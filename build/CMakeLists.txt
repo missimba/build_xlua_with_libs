@@ -53,22 +53,7 @@ list(APPEND THIRDPART_INC  lua-rapidjson/include)
 set (THIRDPART_SRC ${THIRDPART_SRC} ${RAPIDJSON_SRC})
 #end lua-rapidjson
 
-if (NOT PBC)
-	#begin lua-profobuf
-	set (LPB_SRC 
-		lua-protobuf/pb.c
-	)
-	set_property(
-		SOURCE ${LPB_SRC}
-		APPEND
-		PROPERTY COMPILE_DEFINITIONS
-		LUA_LIB
-	)
-	list(APPEND THIRDPART_INC lua-protobuf)
-	set (THIRDPART_SRC ${THIRDPART_SRC} ${LPB_SRC})
-	#end lua-protobuf
-else()
-	#begin pbc
+#begin pbc
 	set (PBC_SRC 
 		pbc/src/alloc.c
 		pbc/src/array.c
@@ -101,7 +86,6 @@ else()
 	list(APPEND THIRDPART_INC pbc pbc/src)
 	set (THIRDPART_SRC ${THIRDPART_SRC} ${PBC_SRC})
 	#end pbc
-endif ()
 
 #begin lpeg
 set ( LPEG_SRC
