@@ -22,7 +22,7 @@ NDKARCH="-DLJ_ABI_SOFTFP=0 -DLJ_ARCH_HASFPU=1 -DLUAJIT_ENABLE_GC64=1"
 NDKF="--sysroot $ANDROID_NDK/platforms/android-$NDKABI/arch-arm64"
 cd "$SRCDIR"
 make clean
-make HOST_CC="gcc -m64" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH"
+make HOST_CC="gcc -m64" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH" VERBOSE=on
 
 cd "$DIR"
 mkdir -p build_lj_v8a && cd build_lj_v8a
@@ -40,7 +40,7 @@ NDKARCH="-march=armv7-a -mfloat-abi=softfp -Wl,--fix-cortex-a8"
 NDKF="--sysroot $ANDROID_NDK/platforms/android-$NDKABI/arch-arm"
 cd "$SRCDIR"
 make clean
-make HOST_CC="gcc -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH"
+make HOST_CC="gcc -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH" VERBOSE=on
 
 cd "$DIR"
 mkdir -p build_lj_v7a && cd build_lj_v7a
@@ -56,7 +56,7 @@ NDKP=$NDKVER/prebuilt/$PREBUILT_PLATFORM/bin/i686-linux-android-
 NDKF="--sysroot $ANDROID_NDK/platforms/android-$NDKABI/arch-x86"
 cd "$SRCDIR"
 make clean
-make HOST_CC="gcc -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF"
+make HOST_CC="gcc -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF" VERBOSE=on
 
 cd "$DIR"
 mkdir -p build_lj_x86 && cd build_lj_x86
