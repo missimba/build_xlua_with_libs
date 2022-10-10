@@ -15,7 +15,7 @@ jobs:
         run: |
           cd ~
           wget -O NDK -q https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip
-          wget -O NDK -q https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
+      
           sudo apt install unzip -y
 
           unzip -q NDK
@@ -25,9 +25,19 @@ jobs:
           cd build
           ./make_android_lua54.sh
           ./make_android_lua53.sh
+      - name: Install NDK10C
+        run: |
+          cd ~
+           wget -O NDK -q https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
+          unzip -q NDK
+          ANDROID_NDK_HOME=$(pwd)/android-ndk-r10e
+          
+      - name: BuildJ
+        run: |
+          cd build
           sudo apt install gcc-multilib
           sudo apt-get install make
-          ./make_android_luajit.sh
+          ./make_android_luajit.sh  
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
